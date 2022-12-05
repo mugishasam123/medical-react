@@ -1,0 +1,116 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 5px 400px 20px 400px;
+}
+
+.header {
+    font-size: 29px;
+    color: #5C7186;
+    text-align: center;
+    font-weight: 800;
+}
+
+.para {
+    text-align: center;
+    color: gray;
+    font-weight: 300;
+}
+
+.log {
+    color: #9BEEFE;
+    font-weight: 300;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.name {
+    display: flex;
+    gap: 5px;
+}
+
+.name-input {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.err-group{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.input {
+    padding: 13px;
+    border: 2px solid rgb(227, 227, 227);
+    outline: none;
+}
+
+.input:focus {
+    outline: #2FD06F;
+}
+
+.submit-group {
+    background-color: #2FD06F;
+    padding: 5px 0px 5px 40px;
+    color: white;
+    display: flex;
+    align-items: center;
+
+}
+
+.password-group {
+    padding: 5px 0px 5px 0px;
+    color: white;
+    display: flex;
+    align-items: center;
+    border: 2px solid rgb(227, 227, 227);
+    outline: none;
+    padding-right: 10px;
+}
+
+.pass {
+    width: 100%;
+    border: none;
+    padding: 9px;
+    outline: none;
+}
+
+.pass-icon {
+    font-size: 19px;
+    color: blue;
+}
+
+.icon {
+    font-size: 20px;
+}
+
+.submit {
+    background-color: #2FD06F;
+    width: 100%;
+    padding: 9px;
+    color: white;
+    border: none;
+    font-size: 16px;
+}
+.err{
+    color: red;
+}
+
+@media (max-width: 1200px) {
+    .container {
+        padding: 50px;
+    }
+
+}
