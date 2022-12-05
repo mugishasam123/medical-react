@@ -1,0 +1,20 @@
+.name-role {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.user-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.role {
+    color: gray;
+}
+
+.username {
+    color: rgb(31, 31, 31);
+}

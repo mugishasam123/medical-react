@@ -1,3 +1,26 @@
-a{
-    text-align: center;
+.container-home {
+    display: flex;
+    gap: 20px;
+}
+
+.tables {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px;
+}
+
+@media (max-width: 768px) {
+    .container-home {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .tables {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 40px;
+    }
 }
