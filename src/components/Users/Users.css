@@ -1,7 +1,6 @@
 .container-users {
     width: 20%;
-    padding-left: 100px;
-    padding-top: 20px;
+    padding: 20px 0px 50px 100px;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -31,13 +30,28 @@
     text-align: center;
     position: absolute;
     right: 20px;
-    bottom: 0;
+    top: 400px;
     z-index: 1000px;
 }
 
 .edit-icon {
     font-size: 30px;
     color: gray;
+}
+
+.csv-button {
+    background-color: #009879;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: fit-content;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.csv-button:hover {
+    background-color: #015e4b;
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {

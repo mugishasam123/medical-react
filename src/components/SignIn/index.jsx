@@ -1,10 +1,9 @@
-import { useState } from 'react';
-import './SignIn.css'
+import { useState } from "react";
+import "./SignIn.css";
 import { HiOutlineLockClosed } from "react-icons/hi";
 import { TiEyeOutline } from "react-icons/ti";
 
-const SignIn=()=>{
-
+const SignIn = () => {
   const [userData, setUserData] = useState(null);
 
   const handleChange = (e) => {
@@ -13,16 +12,39 @@ const SignIn=()=>{
       [e.target.name]: e.target.value,
     });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("sign in", userData);
+
+    try {
+      const res = await fetch("http://localhost:8080/medical-java/login", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+      const results = await res.json();
+      if (results.payload) {
+        if (results.payload.users.length > 0) {
+          localStorage.setItem(
+            "userList",
+            JSON.stringify(results.payload.users)
+          );
+        }
+        localStorage.setItem("token", results.payload.token);
+        window.location.href = "/";
+      }
+    } catch (error) {
+      console.log("error", error.message);
+    }
   };
 
-    return(
-        <div className="container-in">
+  return (
+    <div className="container-in">
       <h1 className="header">Welcome to medical Records Info</h1>
       <p className="para">
-        Want to sign  up?
+        Want to sign up?
         <a className="log" href="/sign-up">
           Sign Up
         </a>
@@ -52,11 +74,16 @@ const SignIn=()=>{
 
         <div className="submit-group">
           <HiOutlineLockClosed className="icon" />
-          <input className="submit" type="submit" value="Sign in" onClick={handleSubmit} />
+          <input
+            className="submit"
+            type="submit"
+            value="Sign in"
+            onClick={handleSubmit}
+          />
         </div>
       </form>
     </div>
-    )
-}
+  );
+};
 
 export default SignIn;

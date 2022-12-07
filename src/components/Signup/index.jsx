@@ -11,6 +11,7 @@ import {
   genderValidator,
   passwordValidator,
 } from "../../utils/validation";
+import createUser from "../../utils/register";
 
 const SignUp = () => {
   const [userData, setUserData] = useState({
@@ -36,7 +37,7 @@ const SignUp = () => {
       [e.target.name]: e.target.value,
     });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (
       firstNameValidator(userData.firstName) ||
@@ -63,7 +64,34 @@ const SignUp = () => {
     setGenderErr("");
     setRoleErr("");
     setPasswordErr("");
-    console.log("sign up", userData);
+  
+    /*fetch("http://localhost:8080/medical-java/register", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      }).then((res)=>res.json())
+      .then((data)=>console.log("data",data))
+      */
+    try {
+      const res = await fetch("http://localhost:8080/medical-java/register", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+      const results = await res.json();
+    
+      if(results.payload){
+        window.location.href='/sign-in'
+      }
+    } catch (error) {
+      console.log("error", error.message);
+    }
   };
 
   return (
@@ -153,10 +181,10 @@ const SignUp = () => {
               className="input"
               onChange={handleChange}
             >
-              <option value="admin">Admin</option>
-              <option value="physician">Physician</option>
-              <option value="patient">Patient</option>
-              <option value="pharmacist">Pharmacist</option>
+              <option value="ADMIN">ADMIN</option>
+              <option value="PHYSICIAN">PHYSICIAN</option>
+              <option value="PATIENT">PATIENT</option>
+              <option value="PHARMACIST">PHARMACIST</option>
             </select>
           </div>
           {roleErr && <span className="err">{roleErr}</span>}

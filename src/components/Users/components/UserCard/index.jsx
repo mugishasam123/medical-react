@@ -1,13 +1,15 @@
 import "./UserCard.css";
 import { FaUserCircle } from "react-icons/fa";
 
-const UserCard = () => {
+const UserCard = ({ user }) => {
   return (
     <div className="user-card">
       <FaUserCircle className="user-icon" />
       <div className="name-role">
-        <span className="username">Bill Gates</span>
-        <span className="role">Admin</span>
+        <span className="username">
+          {user.firstName} {user.lastName}
+        </span>
+        <span className="role">{user.role}</span>
       </div>
     </div>
   );

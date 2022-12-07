@@ -2,17 +2,27 @@ import "./Users.css";
 import NavBar from "./components/NavBar";
 import UserCard from "./components/UserCard";
 import { MdModeEdit } from "react-icons/md";
+import { CSVLink } from "react-csv";
 
-const Users = () => {
+const Users = ({ users }) => {
+  const csvData = users.map((user) => {
+    const newUser = {
+      name: `${user.firstName} ${user.lastName} `,
+      role: user.role,
+    };
+    return newUser;
+  });
   return (
     <div className="container-users">
       <NavBar />
       <div className="users">
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
+        {users.map((user) => (
+          <UserCard key={user.id} user={user} />
+        ))}
       </div>
+      <CSVLink data={csvData} className="csv-button" filename={"usersList.csv"}>
+        Download CSV
+      </CSVLink>
       <div className="edit-group">
         <MdModeEdit className="edit-icon" />
       </div>

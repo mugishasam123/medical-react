@@ -1,33 +1,29 @@
 import "./Table.css";
 
-const Table = () => {
+const Table = ({ data }) => {
   return (
-    <table class="styled-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Points</th>
-          <th>Points</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Dom</td>
-          <td>6000</td>
-          <td>6000</td>
-        </tr>
-        <tr class="active-row">
-          <td>Melissa</td>
-          <td>5150</td>
-          <td>5150</td>
-        </tr>
-        <tr class="active-row">
-          <td>Melissa</td>
-          <td>5150</td>
-          <td>5150</td>
-        </tr>
-      </tbody>
-    </table>
+    
+    <div>
+      <h3>{data.sheetName}</h3>
+      <table className="styled-table">
+        <thead>
+          <tr>
+            {Object.keys(data.data[0]).map((header) => (
+              <th key={header}>{header}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {data.data.map((row) => (
+            <tr className="active-row">
+              <td>{row[2000]}</td>
+              <td>{row[2001]}</td>
+              <td>{row[2002]}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
