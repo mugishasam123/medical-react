@@ -2,43 +2,24 @@ import { useState } from "react";
 import "./SignIn.css";
 import { HiOutlineLockClosed } from "react-icons/hi";
 import { TiEyeOutline } from "react-icons/ti";
+import {handleLogin} from "../../utils/handleLogin"
+
 
 const SignIn = () => {
+
   const [userData, setUserData] = useState(null);
+  const [authErr, setAuthErr] = useState(null);
+  const [emailErr, setEmailErr] = useState(null);
+  const [passwordErr, setPasswordErr] = useState(null);
 
   const handleChange = (e) => {
+    
     setUserData({
       ...userData,
       [e.target.name]: e.target.value,
     });
   };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
 
-    try {
-      const res = await fetch("http://localhost:8080/medical-java/login", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      });
-      const results = await res.json();
-      if (results.payload) {
-        if (results.payload.users.length > 0) {
-          localStorage.setItem(
-            "userList",
-            JSON.stringify(results.payload.users)
-          );
-        }
-        localStorage.setItem("token", results.payload.token);
-        window.location.href = "/";
-      }
-    } catch (error) {
-      console.log("error", error.message);
-    }
-  };
 
   return (
     <div className="container-in">
@@ -49,6 +30,7 @@ const SignIn = () => {
           Sign Up
         </a>
       </p>
+      {authErr && <span className="auth-err">{authErr}</span>}
       <form action="#" className="form">
         <input
           type="email"
@@ -59,9 +41,10 @@ const SignIn = () => {
           id="email"
           className="input"
         />
+        {emailErr && <span className="err">{emailErr}</span>}
         <div className="password-group">
           <input
-            type="text"
+            type="password"
             name="password"
             id="password"
             onChange={handleChange}
@@ -71,14 +54,14 @@ const SignIn = () => {
           />
           <TiEyeOutline className="pass-icon" />
         </div>
-
+        {passwordErr && <span className="err">{passwordErr}</span>}
         <div className="submit-group">
           <HiOutlineLockClosed className="icon" />
           <input
             className="submit"
             type="submit"
             value="Sign in"
-            onClick={handleSubmit}
+            onClick={(e)=>handleLogin(e,setEmailErr,setPasswordErr,setAuthErr,userData)}
           />
         </div>
       </form>

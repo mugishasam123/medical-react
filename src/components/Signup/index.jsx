@@ -2,16 +2,7 @@ import { useState } from "react";
 import "./SignUp.css";
 import { HiOutlineLockClosed } from "react-icons/hi";
 import { TiEyeOutline } from "react-icons/ti";
-import {
-  emailValidator,
-  firstNameValidator,
-  lastNameValidator,
-  ageValidator,
-  roleValidator,
-  genderValidator,
-  passwordValidator,
-} from "../../utils/validation";
-import createUser from "../../utils/register";
+import {handleRegister} from "../../utils/handleRegister"
 
 const SignUp = () => {
   const [userData, setUserData] = useState({
@@ -30,68 +21,13 @@ const SignUp = () => {
   const [genderErr, setGenderErr] = useState(null);
   const [roleErr, setRoleErr] = useState(null);
   const [passwordErr, setPasswordErr] = useState(null);
+  const [authErr, setAuthErr] = useState(null);
 
   const handleChange = (e) => {
     setUserData({
       ...userData,
       [e.target.name]: e.target.value,
     });
-  };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (
-      firstNameValidator(userData.firstName) ||
-      lastNameValidator(userData.lastName) ||
-      emailValidator(userData.email) ||
-      ageValidator(userData.age) ||
-      genderValidator(userData.gender) ||
-      roleValidator(userData.role) ||
-      passwordValidator(userData.password)
-    ) {
-      setFirstNameErr(firstNameValidator(userData.firstName));
-      setLastNameErr(lastNameValidator(userData.lastName));
-      setEmailErr(emailValidator(userData.email));
-      setAgeErr(ageValidator(userData.age));
-      setGenderErr(genderValidator(userData.gender));
-      setRoleErr(roleValidator(userData.role));
-      setPasswordErr(passwordValidator(userData.password));
-      return;
-    }
-    setFirstNameErr("");
-    setLastNameErr("");
-    setEmailErr("");
-    setAgeErr("");
-    setGenderErr("");
-    setRoleErr("");
-    setPasswordErr("");
-  
-    /*fetch("http://localhost:8080/medical-java/register", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      }).then((res)=>res.json())
-      .then((data)=>console.log("data",data))
-      */
-    try {
-      const res = await fetch("http://localhost:8080/medical-java/register", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      });
-      const results = await res.json();
-    
-      if(results.payload){
-        window.location.href='/sign-in'
-      }
-    } catch (error) {
-      console.log("error", error.message);
-    }
   };
 
   return (
@@ -103,6 +39,7 @@ const SignUp = () => {
           Log in
         </a>
       </p>
+      {authErr && <span className="auth-err">{authErr}</span>}
       <form action="#" className="form">
         <div className="name">
           <div className="name-input">
@@ -193,7 +130,7 @@ const SignUp = () => {
         <div className="err-group">
           <div className="password-group">
             <input
-              type="text"
+              type="password"
               name="password"
               id="password"
               onChange={handleChange}
@@ -212,7 +149,20 @@ const SignUp = () => {
             className="submit"
             type="submit"
             value="Sign up"
-            onClick={handleSubmit}
+            onClick={(e) =>
+              handleRegister(
+                e,
+                setFirstNameErr,
+                setLastNameErr,
+                setEmailErr,
+                setAgeErr,
+                setAuthErr,
+                setGenderErr,
+                setRoleErr,
+                setPasswordErr,
+                userData
+              )
+            }
           />
         </div>
       </form>
