@@ -46,11 +46,13 @@
     flex-direction: column;
     gap: 5px;
 }
-.err-group{
+
+.err-group {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
+
 .input {
     padding: 13px;
     border: 2px solid rgb(227, 227, 227);
@@ -62,12 +64,16 @@
 }
 
 .submit-group {
-    background-color: #2FD06F;
-    padding: 5px 0px 5px 40px;
+
+    padding: 100px;
     color: white;
     display: flex;
     align-items: center;
+}
 
+.submit-group:hover {
+    cursor: pointer;
+    background-color: #0b9643;
 }
 
 .password-group {
@@ -89,22 +95,15 @@
 
 .pass-icon {
     font-size: 19px;
-    color: blue;
+    color: #0b9643;
 }
 
 .icon {
     font-size: 20px;
 }
 
-.submit {
-    background-color: #2FD06F;
-    width: 100%;
-    padding: 9px;
-    color: white;
-    border: none;
-    font-size: 16px;
-}
-.err{
+
+.err {
     color: red;
 }
 
@@ -112,5 +111,6 @@
     .container {
         padding: 50px;
     }
+
 
 }

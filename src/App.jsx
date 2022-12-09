@@ -49,7 +49,7 @@ const App = () => {
             <Route exact path="/" element={<Home data={dataObject} />} />
           )}
           {token == null && (
-            <Route exact path="/" element={<Navigate to="/PageNotFound" />} />
+            <Route exact path="/" element={<Navigate to="/sign-in" />} />
           )}
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/sign-in" element={<SignIn />} />

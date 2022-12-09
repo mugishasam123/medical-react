@@ -54,6 +54,11 @@
     cursor: pointer;
 }
 
+.no-users {
+    color: gray;
+    text-align: center;
+}
+
 @media (max-width: 768px) {
     .container-users {
         width: 90%;
@@ -63,5 +68,6 @@
     .edit-group {
         left: 200px;
         bottom: 0;
+        display: none;
     }
 }

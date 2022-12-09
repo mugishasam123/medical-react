@@ -15,17 +15,27 @@ const Users = ({ users }) => {
   return (
     <div className="container-users">
       <NavBar />
-      <div className="users">
-        {users.map((user) => (
-          <UserCard key={user.id} user={user} />
-        ))}
-      </div>
-      <CSVLink data={csvData} className="csv-button" filename={"usersList.csv"}>
-        Download CSV
-      </CSVLink>
-      <div className="edit-group">
-        <MdModeEdit className="edit-icon" />
-      </div>
+      {users.length > 0 ? (
+        <>
+          <div className="users">
+            {users.map((user) => (
+              <UserCard key={user.id} user={user} />
+            ))}
+          </div>
+          <CSVLink
+            data={csvData}
+            className="csv-button"
+            filename={"usersList.csv"}
+          >
+            Download CSV
+          </CSVLink>
+          <div className="edit-group">
+            <MdModeEdit className="edit-icon" />
+          </div>
+        </>
+      ) : (
+        <div className="no-users">No users are available yet</div>
+      )}
     </div>
   );
 };

@@ -1,0 +1,21 @@
+.pop-message {
+  width: fit-content;
+  height: fit-content;
+  padding: 12px 15px;
+  display: flex;
+  gap: 23px;
+  border-radius: 5px;
+}
+
+.close-btn:hover {
+  cursor: pointer;
+}
+
+.success{
+  color: #3C763D;
+  background-color: #DFF0D8;
+}
+.error{
+  background-color: #F2DEDE;
+  color: #B04442 ;
+}

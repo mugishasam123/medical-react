@@ -18,7 +18,8 @@ export const handleRegister = async (
   setGenderErr,
   setRoleErr,
   setPasswordErr,
-  userData
+  userData,
+  setLoading
 ) => {
   e.preventDefault();
   if (
@@ -48,6 +49,7 @@ export const handleRegister = async (
   setPasswordErr("");
 
   try {
+    setLoading(true)
     const res = await fetch("http://localhost:5000/api/v1/register", {
       method: "POST",
       headers: {
@@ -60,11 +62,14 @@ export const handleRegister = async (
 
     if (results.payload) {
       setAuthErr(null);
+      setLoading(false)
       window.location.href = "/sign-in";
     } else {
       setAuthErr(results.message);
+      setLoading(false)
     }
   } catch (error) {
     console.log("error", error.message);
+    setLoading(false)
   }
 };

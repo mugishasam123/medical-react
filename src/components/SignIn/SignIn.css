@@ -48,11 +48,10 @@
 
 .submit-group {
     background-color: #2FD06F;
-    padding: 5px 0px 5px 40px;
+    padding: 13px 40px;
     color: white;
     display: flex;
-    align-items: center;
-
+    gap: 40%;
 }
 
 .password-group {
@@ -80,15 +79,12 @@
 .icon {
     font-size: 20px;
 }
-
-.submit {
-    background-color: #2FD06F;
-    width: 100%;
-    padding: 9px;
-    color: white;
-    border: none;
-    font-size: 16px;
+.authErr{
+    display: flex;
+    justify-content: center;
 }
+
+
 
 @media (max-width: 1200px) {
     .container-in {
