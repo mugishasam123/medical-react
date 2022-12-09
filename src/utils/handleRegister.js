@@ -60,7 +60,7 @@ export const handleRegister= async (
     console.log("after registration", results);
     if (results.payload) {
         setAuthErr(null);
-      // window.location.href='/sign-in'
+        window.location.href='/sign-in'
     } else {
       setAuthErr(results.message);
     }

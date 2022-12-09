@@ -2,14 +2,14 @@ import "./Home.css";
 import Users from "../Users";
 import Table from "../Table";
 
-const Home = ({ role, data }) => {
+const Home = ({ data }) => {
   const users = JSON.parse(localStorage.getItem("data"));
   return (
     <>
       {data ? (
         <div className="container-home">
-          {role == "ADMIN" && <Users users={data.users} />}
-          {role == "ADMIN" ? (
+          {data.role == "ADMIN" && <Users users={data.users} />}
+          {data.role == "ADMIN" ? (
             <div className="tables">
               {data.tables.map((table) => (
                 <Table data={table} key={table.sheetName} />

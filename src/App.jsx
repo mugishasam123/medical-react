@@ -14,18 +14,31 @@ import { fetchData } from "./utils/fetchData";
 const App = () => {
   const [authErr, setAuthErr] = useState(null);
   const [dataObject, setDataObject] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem("token"));
+ 
 
   useEffect(() => {
     const callData = async () => {
       try {
+        console.log("try test")
+        const localData = localStorage.getItem("data");
+        if(localData!=null){
+          console.log("try test1")
+          const parsedData = JSON.parse(localData);
+          console.log("results from localstorage ", parsedData);
+          setDataObject({...dataObject,...parsedData});
+          return;
+        }
+        console.log("try test2")
         const resultsData = await fetchData();
-        console.log("results from fetchmethod ", resultsData);
+        console.log("results from api ", resultsData);
         setDataObject({...dataObject,...resultsData});
-        console.log("dataobject to be passed along ", dataObject);
+        
+        return;
       } catch (error) {
         console.log("error displayed in app.jsx", error.message);
         setAuthErr(error.message);
-        console.log("error displayed in app.jsx", authErr);
+        
       }
     };
     return () => {
@@ -33,18 +46,25 @@ const App = () => {
     };
   }, []);
 
+  useEffect(() => {
+    console.log("autherror", authErr);
+    console.log("dataobject to be passed along ", dataObject);
+  
+  }, [authErr,dataObject])
+  
+
   return (
     <div>
       <Router>
         <Routes>
-          {dataObject != null && (
+          {token != null && (
             <Route
               exact
               path="/"
-              element={<Home role={dataObject.role} data={dataObject} />}
+              element={<Home  data={dataObject} />}
             />
           )}
-          {dataObject == null && (
+          {token == null && (
             <Route exact path="/" element={<Navigate to="/PageNotFound" />} />
           )}
           <Route path="/sign-up" element={<SignUp />} />

@@ -33,7 +33,7 @@ export const handleLogin = async (
     if (results?.payload) {
       setAuthErr(null);
       localStorage.setItem("token", results.payload);
-      // window.location.href = "/";
+       window.location.href = "/";
       return;
     }
     setAuthErr(results.message);
