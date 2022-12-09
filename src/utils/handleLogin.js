@@ -29,17 +29,16 @@ export const handleLogin = async (
     });
 
     const results = await res.json();
-    console.log("after signing", results);
+
     if (results?.payload) {
       setAuthErr(null);
       localStorage.setItem("token", results.payload);
-       window.location.href = "/";
+      window.location.href = "/";
       return;
     }
     setAuthErr(results.message);
     return;
   } catch (error) {
-    console.log("error", error.message);
     setAuthErr(error.message);
   }
 };

@@ -8,7 +8,7 @@ import {
   passwordValidator,
 } from "./validation";
 
-export const handleRegister= async (
+export const handleRegister = async (
   e,
   setFirstNameErr,
   setLastNameErr,
@@ -57,10 +57,10 @@ export const handleRegister= async (
       body: JSON.stringify(userData),
     });
     const results = await res.json();
-    console.log("after registration", results);
+
     if (results.payload) {
-        setAuthErr(null);
-        window.location.href='/sign-in'
+      setAuthErr(null);
+      window.location.href = "/sign-in";
     } else {
       setAuthErr(results.message);
     }
