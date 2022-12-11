@@ -19,7 +19,8 @@ export const handleRegister = async (
   setRoleErr,
   setPasswordErr,
   userData,
-  setLoading
+  setLoading,
+  setDisapear
 ) => {
   e.preventDefault();
   if (
@@ -67,9 +68,17 @@ export const handleRegister = async (
     } else {
       setAuthErr(results.message);
       setLoading(false)
+      setDisapear(false)
+      setTimeout(() => {
+        setDisapear(true)
+      }, 2000);
     }
   } catch (error) {
     console.log("error", error.message);
     setLoading(false)
+    setDisapear(false)
+    setTimeout(() => {
+      setDisapear(true)
+    }, 2000);
   }
 };

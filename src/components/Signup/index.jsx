@@ -3,7 +3,8 @@ import "./SignUp.css";
 import { HiOutlineLockClosed } from "react-icons/hi";
 import { TiEyeOutline } from "react-icons/ti";
 import { handleRegister } from "../../utils/handleRegister";
-import PageLoader from "../PageLoader"
+import PageLoader from "../PageLoader";
+import PopMessage from "../PopMessage";
 
 const SignUp = () => {
   const [userData, setUserData] = useState({
@@ -24,6 +25,7 @@ const SignUp = () => {
   const [passwordErr, setPasswordErr] = useState(null);
   const [authErr, setAuthErr] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [disapear, setDisapear] = useState(true);
 
   const handleChange = (e) => {
     setUserData({
@@ -44,7 +46,8 @@ const SignUp = () => {
       setRoleErr,
       setPasswordErr,
       userData,
-      setLoading
+      setLoading,
+      setDisapear
     );
   };
 
@@ -61,7 +64,15 @@ const SignUp = () => {
               Log in
             </a>
           </p>
-          {authErr && <span className="auth-err">{authErr}</span>}
+          <div className="authErr">
+            {!disapear && (
+              <PopMessage
+                status="error"
+                message={authErr}
+                setDisapear={setDisapear}
+              />
+            )}
+          </div>
           <form action="#" className="form">
             <div className="name">
               <div className="name-input">
