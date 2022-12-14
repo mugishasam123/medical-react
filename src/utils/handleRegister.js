@@ -71,7 +71,7 @@ export const handleRegister = async (
       setDisapear(false)
       setTimeout(() => {
         setDisapear(true)
-      }, 2000);
+      }, 5000);
     }
   } catch (error) {
     console.log("error", error.message);
@@ -79,6 +79,6 @@ export const handleRegister = async (
     setDisapear(false)
     setTimeout(() => {
       setDisapear(true)
-    }, 2000);
+    }, 5000);
   }
 };

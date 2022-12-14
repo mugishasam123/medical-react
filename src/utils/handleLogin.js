@@ -46,7 +46,7 @@ export const handleLogin = async (
     setDisapear(false)
     setTimeout(() => {
       setDisapear(true)
-    }, 2000);
+    }, 5000);
     return;
   } catch (error) {
     setAuthErr(error.message);
@@ -54,6 +54,6 @@ export const handleLogin = async (
     setDisapear(false)
     setTimeout(() => {
       setDisapear(true)
-    }, 2000);
+    }, 5000);
   }
 };
