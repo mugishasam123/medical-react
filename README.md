@@ -2,7 +2,7 @@
 
 # meda-app
 
-> meda app  is an app that allows different medical staffs,like physician,pharmacist etc to see medical records accord to their medical roles while an admin can manage all data .It is built with react and redux .
+> meda app  is an app that allows different medical staffs,like physician,pharmacist etc to see medical records accord to their medical roles while an admin can manage all data .
 > 
 
 
@@ -47,14 +47,14 @@ To get a local copy up and running follow these simple example steps.
 #### Clone this repository
 
 ```bash
-$ git clone https://github.com/mugishasam123/Stock-metrics.git
-$ cd Stock-metrics
+$ git clone https://github.com/mugishasam123/medical-react.git
+$ cd medical-react
 ```
 #### Run project
 
 ```bash
 $ npm install
-$ npm start # this will open it in the browser and enable hot reloading
+$ npm run dev # this will open it in the browser and enable hot reloading
 ```
 
   <br>
