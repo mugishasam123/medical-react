@@ -13,6 +13,10 @@
 
 <br/>
 
+[link to express gateway repo](https://github.com/mugishasam123/medical-express)
+
+[link to java api  repo](https://github.com/mugishasam123/medical-java)
+
 
 
 Additional description about the project and its features.
